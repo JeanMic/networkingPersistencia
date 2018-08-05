@@ -1,5 +1,6 @@
 package com.jeanandroid.networkingpersistencia.retrofit
 
+import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import com.jeanandroid.networkingpersistencia.R
 import com.jeanandroid.networkingpersistencia.entidadeFakeAPI
+import com.jeanandroid.networkingpersistencia.rom.BASE
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -58,10 +60,26 @@ class ActivityRetrofit : AppCompatActivity(){
         arrayEntidadeFake = ArrayList(listaEntidadeFake)
         adapter = adapterForResponseAPI(arrayEntidadeFake!!)
 
+        cargaNoBanco(arrayEntidadeFake)
+
         List.adapter = adapter
     }
 
     private fun handleError(error: Throwable) {
         Toast.makeText(this, "Deu Ruim Pra Tu hj Fera ${error.localizedMessage}", Toast.LENGTH_SHORT).show()
+    }
+
+    fun cargaNoBanco(arrayEntidades: ArrayList<entidadeFakeAPI>?){
+
+        val database = Room.databaseBuilder(
+                this,
+                BASE::class.java,
+                "JSONCESAR")
+                .allowMainThreadQueries()
+                .build()
+
+        BASE.productDao = database.entidadeDAO()
+        BASE.productDao?.deleteAll()
+        BASE.productDao?.insertAll(arrayEntidades!!)
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jeanandroid.networkingpersistencia">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,7 +24,9 @@
             android:name=".retrofit.ActivityRetrofit"
             android:label="@string/title_activity_retrofit"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".retrofit.ActivityRetrofit"></activity>
+        <!-- <activity android:name=".retrofit.ActivityRetrofit" -->
+        <!-- tools:ignore="DuplicateActivity"></activity> -->
+        <activity android:name=".rom.Activityrom"></activity>
     </application>
 
 </manifest>
