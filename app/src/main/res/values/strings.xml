@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">networkingPersistencia</string>
+    <string name="title_activity_retrofit">ActivityRetrofit</string>
+</resources>
